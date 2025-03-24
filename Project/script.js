@@ -1,5 +1,7 @@
-// Load the JSON data and map tasks
-fetch('data.json')
+// Adjust path for GitHub Pages compatibility
+const basePath = '/Class-Assignments/Project/';
+
+fetch(`${basePath}data.json`)
     .then(response => {
         if (!response.ok) {
             throw new Error(`Failed to load: ${response.status} ${response.statusText}`);
@@ -9,8 +11,6 @@ fetch('data.json')
     .then(data => {
         const taskList = document.getElementById('task-list');
         taskList.innerHTML = ''; // Clear existing content
-
-        console.log('Data loaded:', data); // Log the data to ensure it's loaded
 
         data.forEach(task => {
             const thumbnail = document.createElement('div');
@@ -22,11 +22,8 @@ fetch('data.json')
     })
     .catch(error => console.error('Error loading task data:', error));
 
-// Load task content dynamically
 function loadTask(taskFile) {
-    console.log('Loading task:', taskFile); // Log the task file being loaded
-
-    fetch(`Tasks/${taskFile}`)
+    fetch(`${basePath}Tasks/${taskFile}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error(`Failed to load: ${response.status} ${response.statusText}`);
@@ -34,8 +31,7 @@ function loadTask(taskFile) {
             return response.text();
         })
         .then(data => {
-            console.log('Task content loaded:', data); // Log the loaded content
-            document.getElementById('task-display').innerHTML = data; // Insert the content into the task display area
+            document.getElementById('task-display').innerHTML = data;
         })
         .catch(error => {
             console.error('Error:', error);
