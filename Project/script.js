@@ -1,6 +1,7 @@
-const basePath = './'; // basePath is now at root level
+const basePath = './Project/'; // Base path to Project folder
+const imagePath = '../images/'; // Path to images folder at root level
 
-fetch(`${basePath}Project/data.json`) //data.json is inside project folder
+fetch(`${basePath}data.json`) // Fetch data.json inside Project folder
     .then(response => response.json())
     .then(data => {
         const taskList = document.getElementById('task-list');
@@ -11,32 +12,32 @@ fetch(`${basePath}Project/data.json`) //data.json is inside project folder
             thumbnail.classList.add('thumbnail');
 
             // Construct the image path correctly
-            const imagePath = `${basePath}images/${index + 1}.jpg`;
-            console.log(`Loading image from: ${imagePath}`); // Debugging statement
+            const imgSrc = `${imagePath}${index + 1}.jpg`;
+            console.log(`Loading image from: ${imgSrc}`); // Debugging
 
             // Add the thumbnail content first
             thumbnail.innerHTML = `
                 <div class="image-placeholder">Loading...</div>
                 <h3>${task.title}</h3>
             `;
+
+            // Load task content on click
             thumbnail.addEventListener('click', () => loadTaskContent(task.title, task.files));
             taskList.appendChild(thumbnail);
 
-            // Check if the image exists (optional, but good practice)
+            // Attempt to load the image
             const img = new Image();
             img.onload = () => {
-                // Image loaded successfully, replace the placeholder
                 thumbnail.querySelector('.image-placeholder').innerHTML = `
-                    <img src="${imagePath}" alt="Task ${index + 1}">
+                    <img src="${imgSrc}" alt="Task ${index + 1}">
                 `;
             };
             img.onerror = () => {
-                // Image failed to load, keep the placeholder
+                console.error(`Image not found: ${imgSrc}`);
                 thumbnail.querySelector('.image-placeholder').innerHTML = 'Image not found';
-                console.error(`Image not found: ${imagePath}`); // Log the error
             };
 
-            img.src = imagePath; // Start loading the image
+            img.src = imgSrc; // Start loading the image
         });
     })
     .catch(error => console.error('Error loading task data:', error));
@@ -54,4 +55,10 @@ function loadTaskContent(title, files) {
 
 document.querySelector('.close-button').onclick = () => {
     document.getElementById('task-modal').style.display = "none";
+};
+
+window.onclick = (event) => {
+    if (event.target === document.getElementById('task-modal')) {
+        document.getElementById('task-modal').style.display = "none";
+    }
 };
