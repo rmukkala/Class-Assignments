@@ -19,13 +19,13 @@ fetch(`${basePath}data.json`)
             const thumbnail = document.createElement('div');
             thumbnail.classList.add('thumbnail');
             thumbnail.innerHTML = `<h3>${task.title}</h3>`;
-            thumbnail.addEventListener('click', () => loadTaskContent(task.title, task.files)); // Modified function call
+            thumbnail.addEventListener('click', () => loadTaskContent(task.title, task.files));
             taskList.appendChild(thumbnail);
         });
     })
     .catch(error => console.error('Error loading task data:', error));
 
-// Load task content dynamically (modified function)
+// Load task content dynamically (use iframe to load HTML files)
 function loadTaskContent(title, files) {
     console.log('Loading task content:', title);
 
@@ -35,22 +35,14 @@ function loadTaskContent(title, files) {
     modal.style.display = "block"; // Show the modal
 
     if (files && files.length > 0) {
-        // Fetch the content of the first file (or handle multiple files as needed)
-        fetch(`${basePath}Tasks/${files[0]}`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`Failed to load file: ${response.status} ${response.statusText}`);
-                }
-                return response.text();
-            })
-            .then(htmlContent => {
-                // Correct insertion of the HTML content
-                modalContent.innerHTML = htmlContent;
-            })
-            .catch(error => {
-                console.error('Error loading file content:', error);
-                modalContent.innerHTML = '<p>Failed to load task content.</p>';
-            });
+        // Use iframe to load the HTML file directly as a webpage
+        modalContent.innerHTML = `
+            <iframe src="${basePath}Tasks/${files[0]}" 
+                    width="100%" 
+                    height="500px" 
+                    frameborder="0" 
+                    style="border: none;"></iframe>
+        `;
     } else {
         modalContent.innerHTML = '<p>No files available for this task.</p>';
     }
