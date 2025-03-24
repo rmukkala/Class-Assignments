@@ -12,6 +12,7 @@ fetch(`${basePath}Project/data.json`) //data.json is inside project folder
 
             // Construct the image path correctly
             const imagePath = `${basePath}images/${index + 1}.jpg`;
+            console.log(`Loading image from: ${imagePath}`); // Debugging statement
 
             // Check if the image exists (optional, but good practice)
             const img = new Image();
