@@ -1,6 +1,7 @@
-const basePath = '/Class-Assignments/Project/'; // Correct path for GitHub repository
+// Set base path to reflect GitHub Pages URL structure
+const basePath = '/Class-Assignments/Project/';  // This assumes you are hosting on GitHub Pages under this path
 
-// Load data.json
+// Fetch the data.json file from the correct location
 fetch(`${basePath}data.json`)
     .then(response => {
         if (!response.ok) {
@@ -22,8 +23,9 @@ fetch(`${basePath}data.json`)
     })
     .catch(error => console.error('Error loading task data:', error));
 
-// Function to load the task file dynamically
+// Function to load task file dynamically
 function loadTask(taskFile) {
+    // Correct path to fetch tasks from the 'Tasks' folder
     fetch(`${basePath}Tasks/${taskFile}`)
         .then(response => {
             if (!response.ok) {
@@ -32,7 +34,7 @@ function loadTask(taskFile) {
             return response.text();
         })
         .then(data => {
-            document.getElementById('task-display').innerHTML = data; // Display task content
+            document.getElementById('task-display').innerHTML = data; // Display the task content in the task display area
         })
         .catch(error => {
             console.error('Error:', error);
