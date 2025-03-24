@@ -1,4 +1,4 @@
-const basePath = '/Class-Assignments/Project/';
+const basePath = './';
 
 fetch(`${basePath}data.json`)
     .then(response => response.json())
