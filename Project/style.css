@@ -64,7 +64,19 @@ header h1 {
     border: 1px solid #ccc;
     margin: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Task Links */
+.task-file {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+.task-file:hover {
+    text-decoration: underline;
+    color: #0056b3;
 }
 
 /* Footer */
@@ -90,4 +102,9 @@ footer .footer-icon {
 
 footer .footer-icon:hover {
     color: #E8E8E8;
+}
+
+footer p {
+    font-size: 1.2em;
+    margin: 0;
 }
