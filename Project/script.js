@@ -19,37 +19,43 @@ fetch(`${basePath}data.json`)
             const thumbnail = document.createElement('div');
             thumbnail.classList.add('thumbnail');
             thumbnail.innerHTML = `<h3>${task.title}</h3>`;
-            thumbnail.addEventListener('click', () => loadTask(task.title, task.files)); // Pass title and files for task
+            thumbnail.addEventListener('click', () => loadTaskContent(task.title, task.files)); // Modified function call
             taskList.appendChild(thumbnail);
         });
     })
     .catch(error => console.error('Error loading task data:', error));
 
-// Load task content dynamically
-function loadTask(title, files) {
-    console.log('Loading task:', title);
+// Load task content dynamically (modified function)
+function loadTaskContent(title, files) {
+    console.log('Loading task content:', title);
 
     const modal = document.getElementById('task-modal');
     const modalContent = document.getElementById('modal-task-details');
-    modalContent.innerHTML = ''; // Clear existing content in modal
+    modalContent.innerHTML = '<p>Loading...</p>'; // Initial loading message
+    modal.style.display = "block"; // Show the modal
 
     if (files && files.length > 0) {
-        files.forEach(file => {
-            const fileLink = document.createElement('a');
-            fileLink.href = `${basePath}Tasks/${file}`;
-            fileLink.textContent = file;
-            fileLink.classList.add('task-file');
-            modalContent.appendChild(fileLink);
-            modalContent.appendChild(document.createElement('br'));
-        });
+        // Fetch the content of the first file (or handle multiple files as needed)
+        fetch(`${basePath}Tasks/${files[0]}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Failed to load file: ${response.status} ${response.statusText}`);
+                }
+                return response.text();
+            })
+            .then(htmlContent => {
+                modalContent.innerHTML = htmlContent; // Display the fetched HTML
+            })
+            .catch(error => {
+                console.error('Error loading file content:', error);
+                modalContent.innerHTML = '<p>Failed to load task content.</p>';
+            });
     } else {
         modalContent.innerHTML = '<p>No files available for this task.</p>';
     }
-
-    modal.style.display = "block"; // Show the modal
 }
 
-// Close Modal Logic
+// Close Modal Logic (remains the same)
 const modal = document.getElementById('task-modal');
 const closeButton = document.querySelector('.close-button');
 
