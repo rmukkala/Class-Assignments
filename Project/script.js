@@ -1,4 +1,6 @@
-const basePath = './';
+// script.js
+
+const basePath = './'; // Or adjust the path if your images are in a different folder
 
 fetch(`${basePath}data.json`)
     .then(response => response.json())
@@ -9,12 +11,33 @@ fetch(`${basePath}data.json`)
         data.forEach((task, index) => {
             const thumbnail = document.createElement('div');
             thumbnail.classList.add('thumbnail');
-            thumbnail.innerHTML = `
-                <img src="${basePath}images/${index + 1}.jpg" alt="Task ${index + 1}">
-                <h3>${task.title}</h3>
-            `;
-            thumbnail.addEventListener('click', () => loadTaskContent(task.title, task.files));
-            taskList.appendChild(thumbnail);
+
+            // Construct the image path correctly
+            const imagePath = `${basePath}images/${index + 1}.jpg`;
+
+            // Check if the image exists (optional, but good practice)
+            const img = new Image();
+            img.onload = () => {
+                // Image loaded successfully, add it to the thumbnail
+                thumbnail.innerHTML = `
+                    <img src="${imagePath}" alt="Task ${index + 1}">
+                    <h3>${task.title}</h3>
+                `;
+                thumbnail.addEventListener('click', () => loadTaskContent(task.title, task.files));
+                taskList.appendChild(thumbnail);
+            };
+            img.onerror = () => {
+                // Image failed to load, add a placeholder or error message
+                thumbnail.innerHTML = `
+                    <div class="image-placeholder">Image not found</div>
+                    <h3>${task.title}</h3>
+                `;
+                thumbnail.addEventListener('click', () => loadTaskContent(task.title, task.files));
+                taskList.appendChild(thumbnail);
+                console.error(`Image not found: ${imagePath}`); // Log the error
+            };
+
+            img.src = imagePath; // Start loading the image
         });
     })
     .catch(error => console.error('Error loading task data:', error));
