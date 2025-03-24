@@ -13,31 +13,36 @@ fetch(`${basePath}data.json`)
         const taskList = document.getElementById('task-list');
         taskList.innerHTML = ''; // Clear existing content
 
+        console.log('Data loaded:', data); // Log the data to ensure it's loaded
+
         data.forEach(task => {
             const thumbnail = document.createElement('div');
             thumbnail.classList.add('thumbnail');
             thumbnail.innerHTML = `<h3>${task.title}</h3>`;
-            thumbnail.addEventListener('click', () => loadTask(task.file));
+            thumbnail.addEventListener('click', () => loadTask(task.folder, task.files)); // Pass folder and files for task
             taskList.appendChild(thumbnail);
         });
     })
     .catch(error => console.error('Error loading task data:', error));
 
-// Function to load task file dynamically
-function loadTask(taskFile) {
-    // Correct path to fetch tasks from the 'Tasks' folder
-    fetch(`${basePath}Tasks/${taskFile}`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`Failed to load: ${response.status} ${response.statusText}`);
-            }
-            return response.text();
-        })
-        .then(data => {
-            document.getElementById('task-display').innerHTML = data; // Display the task content in the task display area
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            document.getElementById('task-display').innerHTML = `<p style="color: red;">Error loading task: ${error.message}</p>`;
+// Load task content dynamically
+function loadTask(folder, files) {
+    console.log('Loading task from folder:', folder); // Log the task folder
+
+    const taskDisplay = document.getElementById('task-display');
+    taskDisplay.innerHTML = '';  // Clear existing content in task display area
+
+    if (files.length > 0) {
+        // Loop through the files and display them as links
+        files.forEach(file => {
+            const fileLink = document.createElement('a');
+            fileLink.href = `Tasks/${folder}/${file}`;
+            fileLink.textContent = file;
+            fileLink.classList.add('task-file');
+            taskDisplay.appendChild(fileLink);
+            taskDisplay.appendChild(document.createElement('br'));  // Add a line break between files
         });
+    } else {
+        taskDisplay.innerHTML = '<p>No files available for this task.</p>';
+    }
 }
