@@ -19,24 +19,24 @@ fetch(`${basePath}data.json`)
             const thumbnail = document.createElement('div');
             thumbnail.classList.add('thumbnail');
             thumbnail.innerHTML = `<h3>${task.title}</h3>`;
-            thumbnail.addEventListener('click', () => loadTask(task.folder, task.files)); // Pass folder and files for task
+            thumbnail.addEventListener('click', () => loadTask(task.title, task.files)); // Pass title and files for task
             taskList.appendChild(thumbnail);
         });
     })
     .catch(error => console.error('Error loading task data:', error));
 
 // Load task content dynamically
-function loadTask(folder, files) {
-    console.log('Loading task from folder:', folder); // Log the task folder
+function loadTask(title, files) {
+    console.log('Loading task:', title); // Log the task title
 
     const taskDisplay = document.getElementById('task-display');
     taskDisplay.innerHTML = '';  // Clear existing content in task display area
 
-    if (files.length > 0) {
+    if (files && files.length > 0) {
         // Loop through the files and display them as links
         files.forEach(file => {
             const fileLink = document.createElement('a');
-            fileLink.href = `Tasks/${folder}/${file}`;
+            fileLink.href = `${basePath}Tasks/${file}`;
             fileLink.textContent = file;
             fileLink.classList.add('task-file');
             taskDisplay.appendChild(fileLink);
