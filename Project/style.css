@@ -1,4 +1,4 @@
-/* style.css */
+/* General Styling */
 html, body {
     margin: 0;
     padding: 0;
@@ -6,8 +6,16 @@ html, body {
     font-family: 'Instrument Serif', 'Newsreader', serif;
     background-color: #FBFBFB;
     color: #342E2E;
+    box-sizing: border-box;
 }
 
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+/* Header */
 header {
     background-color: #342E2E;
     color: #FBFBFB;
@@ -19,6 +27,7 @@ header h1 {
     font-weight: normal;
 }
 
+/* Heading */
 .tasks-heading {
     text-align: center;
     margin-top: 20px;
@@ -30,15 +39,17 @@ header h1 {
     font-weight: normal;
 }
 
+/* Thumbnails Grid */
 .thumbnails {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid */
     gap: 20px;
     padding: 20px;
     height: calc(100vh - 220px);
     overflow-y: auto;
 }
 
+/* Individual Thumbnail */
 .thumbnail {
     background-color: #E8E8E8;
     border: 1px solid #ccc;
@@ -48,6 +59,9 @@ header h1 {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .thumbnail img {
@@ -67,30 +81,48 @@ header h1 {
     transform: scale(1.05);
 }
 
+/* Placeholder for loading images */
+.image-placeholder {
+    width: 100%;
+    height: 150px;
+    background-color: #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    color: #888;
+    font-size: 14px;
+}
+
+/* Modal Styling */
 .modal {
     display: none;
     position: fixed;
-    z-index: 1;
+    z-index: 9999;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.6);
 }
 
 .modal-content {
     background-color: #fefefe;
     margin: 5% auto;
     padding: 20px;
-    width: 80%;
+    width: 90%; /* Adjust for smaller screens */
+    max-width: 800px;
     border-radius: 8px;
     position: relative;
 }
 
+/* Close Button */
 .close-button {
     color: #aaa;
-    float: right;
+    position: absolute;
+    top: 10px;
+    right: 15px;
     font-size: 28px;
     cursor: pointer;
 }
@@ -99,11 +131,15 @@ header h1 {
     color: black;
 }
 
+/* Footer Styling */
 footer {
     background-color: #342E2E;
     color: #FBFBFB;
     text-align: center;
     padding: 1em 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 
 footer .footer-content {
@@ -116,19 +152,35 @@ footer .footer-icon {
     color: #FBFBFB;
     margin: 0 10px;
     font-size: 1.5em;
+    transition: color 0.2s;
 }
 
 footer .footer-icon:hover {
     color: #E8E8E8;
 }
 
-.image-placeholder {
-    width: 100%;
-    height: 150px;
-    background-color: #ddd;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 8px;
-    color: #888;
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .tasks-heading h2 {
+        font-size: 2em;
+    }
+
+    .modal-content {
+        width: 95%;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .tasks-heading h2 {
+        font-size: 1.5em;
+    }
+
+    .thumbnail h3 {
+        font-size: 1em;
+    }
+
+    .thumbnail img {
+        height: 120px;
+    }
 }
