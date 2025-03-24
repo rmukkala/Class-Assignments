@@ -1,7 +1,7 @@
 // Set base path to reflect GitHub Pages URL structure
 const basePath = '/Class-Assignments/Project/';
 
-// Fetch the data.json file from the correct location
+// Fetch the data.json file
 fetch(`${basePath}data.json`)
     .then(response => {
         if (!response.ok) {
@@ -18,7 +18,10 @@ fetch(`${basePath}data.json`)
         data.forEach(task => {
             const thumbnail = document.createElement('div');
             thumbnail.classList.add('thumbnail');
-            thumbnail.innerHTML = `<h3>${task.title}</h3>`;
+            thumbnail.innerHTML = `
+                <img src="${basePath}${task.image}" alt="${task.title}" class="thumbnail-image">
+                <h3>${task.title}</h3>
+            `;
             thumbnail.addEventListener('click', () => loadTaskContent(task.title, task.files));
             taskList.appendChild(thumbnail);
         });
@@ -32,20 +35,13 @@ function loadTaskContent(title, files) {
     const modal = document.getElementById('task-modal');
     const modalContent = document.getElementById('modal-task-details');
 
-    // Initial loading message
     modalContent.innerHTML = '<p>Loading...</p>';
     modal.style.display = "block";
 
     if (files && files.length > 0) {
-        // Use iframe to load HTML file directly as a webpage
         modalContent.innerHTML = `
             <h3>${title}</h3>
-            <iframe src="${basePath}Tasks/${files[0]}" 
-                    width="100%" 
-                    height="500px" 
-                    frameborder="0" 
-                    style="border: none; border-radius: 8px; box-shadow: 0px 4px 10px rgba(0,0,0,0.1);">
-            </iframe>
+            <iframe src="${basePath}Tasks/${files[0]}" width="100%" height="500px" frameborder="0" style="border: none;"></iframe>
         `;
     } else {
         modalContent.innerHTML = '<p>No files available for this task.</p>';
