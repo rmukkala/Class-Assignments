@@ -1,4 +1,4 @@
-/* Global Reset */
+/* style.css */
 html, body {
     margin: 0;
     padding: 0;
@@ -8,7 +8,6 @@ html, body {
     color: #342E2E;
 }
 
-/* Header */
 header {
     background-color: #342E2E;
     color: #FBFBFB;
@@ -20,7 +19,6 @@ header h1 {
     font-weight: normal;
 }
 
-/* Centered "My Tasks" heading */
 .tasks-heading {
     text-align: center;
     margin-top: 20px;
@@ -32,7 +30,6 @@ header h1 {
     font-weight: normal;
 }
 
-/* Task Grid */
 .thumbnails {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -70,7 +67,6 @@ header h1 {
     transform: scale(1.05);
 }
 
-/* Modal Styles */
 .modal {
     display: none;
     position: fixed;
@@ -103,7 +99,6 @@ header h1 {
     color: black;
 }
 
-/* Footer */
 footer {
     background-color: #342E2E;
     color: #FBFBFB;
@@ -125,4 +120,15 @@ footer .footer-icon {
 
 footer .footer-icon:hover {
     color: #E8E8E8;
+}
+
+.image-placeholder {
+    width: 100%;
+    height: 150px;
+    background-color: #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    color: #888;
 }
