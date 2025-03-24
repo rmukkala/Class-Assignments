@@ -1,3 +1,5 @@
+/* style.css */
+
 /* General Styling */
 html, body {
     margin: 0;
@@ -42,7 +44,7 @@ header h1 {
 /* Thumbnails Grid */
 .thumbnails {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid */
+    grid-template-columns: repeat(4, 1fr); /* 4 columns */
     gap: 20px;
     padding: 20px;
     height: calc(100vh - 220px);
@@ -151,36 +153,4 @@ footer .footer-content {
 footer .footer-icon {
     color: #FBFBFB;
     margin: 0 10px;
-    font-size: 1.5em;
-    transition: color 0.2s;
-}
-
-footer .footer-icon:hover {
-    color: #E8E8E8;
-}
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-    .tasks-heading h2 {
-        font-size: 2em;
-    }
-
-    .modal-content {
-        width: 95%;
-        padding: 15px;
-    }
-}
-
-@media (max-width: 480px) {
-    .tasks-heading h2 {
-        font-size: 1.5em;
-    }
-
-    .thumbnail h3 {
-        font-size: 1em;
-    }
-
-    .thumbnail img {
-        height: 120px;
-    }
-}
+    font-size: 1.5
