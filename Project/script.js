@@ -14,25 +14,25 @@ fetch(`${basePath}Project/data.json`) //data.json is inside project folder
             const imagePath = `${basePath}images/${index + 1}.jpg`;
             console.log(`Loading image from: ${imagePath}`); // Debugging statement
 
+            // Add the thumbnail content first
+            thumbnail.innerHTML = `
+                <div class="image-placeholder">Loading...</div>
+                <h3>${task.title}</h3>
+            `;
+            thumbnail.addEventListener('click', () => loadTaskContent(task.title, task.files));
+            taskList.appendChild(thumbnail);
+
             // Check if the image exists (optional, but good practice)
             const img = new Image();
             img.onload = () => {
-                // Image loaded successfully, add it to the thumbnail
-                thumbnail.innerHTML = `
+                // Image loaded successfully, replace the placeholder
+                thumbnail.querySelector('.image-placeholder').innerHTML = `
                     <img src="${imagePath}" alt="Task ${index + 1}">
-                    <h3>${task.title}</h3>
                 `;
-                thumbnail.addEventListener('click', () => loadTaskContent(task.title, task.files));
-                taskList.appendChild(thumbnail);
             };
             img.onerror = () => {
-                // Image failed to load, add a placeholder or error message
-                thumbnail.innerHTML = `
-                    <div class="image-placeholder">Image not found</div>
-                    <h3>${task.title}</h3>
-                `;
-                thumbnail.addEventListener('click', () => loadTaskContent(task.title, task.files));
-                taskList.appendChild(thumbnail);
+                // Image failed to load, keep the placeholder
+                thumbnail.querySelector('.image-placeholder').innerHTML = 'Image not found';
                 console.error(`Image not found: ${imagePath}`); // Log the error
             };
 
