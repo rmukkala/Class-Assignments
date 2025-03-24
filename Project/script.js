@@ -1,3 +1,5 @@
+// script.js
+
 // If hosted on GitHub Pages, adjust the basePath to include the repository name
 const basePath = './';
 
