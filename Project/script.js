@@ -1,5 +1,5 @@
 // Set base path to reflect GitHub Pages URL structure
-const basePath = '/Class-Assignments/Project/';  // This assumes you are hosting on GitHub Pages under this path
+const basePath = '/Class-Assignments/Project/'; // Adjust if needed
 
 // Fetch the data.json file from the correct location
 fetch(`${basePath}data.json`)
@@ -27,22 +27,38 @@ fetch(`${basePath}data.json`)
 
 // Load task content dynamically
 function loadTask(title, files) {
-    console.log('Loading task:', title); // Log the task title
+    console.log('Loading task:', title);
 
-    const taskDisplay = document.getElementById('task-display');
-    taskDisplay.innerHTML = '';  // Clear existing content in task display area
+    const modal = document.getElementById('task-modal');
+    const modalContent = document.getElementById('modal-task-details');
+    modalContent.innerHTML = ''; // Clear existing content in modal
 
     if (files && files.length > 0) {
-        // Loop through the files and display them as links
         files.forEach(file => {
             const fileLink = document.createElement('a');
             fileLink.href = `${basePath}Tasks/${file}`;
             fileLink.textContent = file;
             fileLink.classList.add('task-file');
-            taskDisplay.appendChild(fileLink);
-            taskDisplay.appendChild(document.createElement('br'));  // Add a line break between files
+            modalContent.appendChild(fileLink);
+            modalContent.appendChild(document.createElement('br'));
         });
     } else {
-        taskDisplay.innerHTML = '<p>No files available for this task.</p>';
+        modalContent.innerHTML = '<p>No files available for this task.</p>';
     }
+
+    modal.style.display = "block"; // Show the modal
 }
+
+// Close Modal Logic
+const modal = document.getElementById('task-modal');
+const closeButton = document.querySelector('.close-button');
+
+closeButton.onclick = function() {
+    modal.style.display = "none";
+};
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+};
