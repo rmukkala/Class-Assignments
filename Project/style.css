@@ -1,12 +1,8 @@
 /* Global Reset */
-* {
+html, body {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-}
-
-/* Body Styles */
-body {
+    height: 100%;
     font-family: 'Instrument Serif', 'Newsreader', serif;
     background-color: #FBFBFB;
     color: #342E2E;
@@ -46,67 +42,65 @@ header h1 {
     overflow-y: auto;
 }
 
-/* Task Box */
 .thumbnail {
     background-color: #E8E8E8;
     border: 1px solid #ccc;
     border-radius: 10px;
-    padding: 0;
+    padding: 10px;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s;
     cursor: pointer;
 }
 
-.thumbnail:hover {
-    transform: scale(1.05);
+.thumbnail img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
 }
 
 .thumbnail h3 {
-    padding: 10px;
+    margin-top: 10px;
+    font-size: 1.2em;
+    color: #342E2E;
 }
 
-/* Thumbnail Images */
-.thumbnail img {
-    width: 100%; /* Make the image responsive */
-    height: 150px; /* Fixed height for consistency */
-    object-fit: cover; /* Ensure the image covers the space without distortion */
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+.thumbnail:hover {
+    transform: scale(1.05);
 }
 
 /* Modal Styles */
 .modal {
     display: none;
     position: fixed;
-    z-index: 10;
+    z-index: 1;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal-content {
-    background-color: #fff;
-    margin: 10% auto;
+    background-color: #fefefe;
+    margin: 5% auto;
     padding: 20px;
-    border-radius: 10px;
     width: 80%;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    border-radius: 8px;
+    position: relative;
 }
 
 .close-button {
+    color: #aaa;
     float: right;
-    font-size: 24px;
-    font-weight: bold;
-    color: #999;
+    font-size: 28px;
     cursor: pointer;
 }
 
 .close-button:hover {
-    color: #000;
+    color: black;
 }
 
 /* Footer */
@@ -117,19 +111,18 @@ footer {
     padding: 1em 0;
 }
 
-.footer-content {
+footer .footer-content {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    padding: 0 20px;
 }
 
-.footer-icon {
+footer .footer-icon {
     color: #FBFBFB;
     margin: 0 10px;
     font-size: 1.5em;
-    transition: color 0.2s;
 }
 
-.footer-icon:hover {
+footer .footer-icon:hover {
     color: #E8E8E8;
 }
