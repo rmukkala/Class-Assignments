@@ -1,8 +1,6 @@
-// script.js
+const basePath = './'; // basePath is now at root level
 
-const basePath = './'; // Or adjust the path if your images are in a different folder
-
-fetch(`${basePath}data.json`)
+fetch(`${basePath}Project/data.json`) //data.json is inside project folder
     .then(response => response.json())
     .then(data => {
         const taskList = document.getElementById('task-list');
