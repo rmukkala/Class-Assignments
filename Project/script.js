@@ -44,7 +44,8 @@ function loadTaskContent(title, files) {
                 return response.text();
             })
             .then(htmlContent => {
-                modalContent.innerHTML = htmlContent; // Display the fetched HTML
+                // Correct insertion of the HTML content
+                modalContent.innerHTML = htmlContent;
             })
             .catch(error => {
                 console.error('Error loading file content:', error);
