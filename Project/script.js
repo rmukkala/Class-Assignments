@@ -1,7 +1,6 @@
-const basePath = './Project/'; // Base path to Project folder
-const imagePath = '../images/'; // Path to images folder at root level
+const basePath = './';
 
-fetch(`${basePath}data.json`) // Fetch data.json inside Project folder
+fetch(`${basePath}data.json`)
     .then(response => response.json())
     .then(data => {
         const taskList = document.getElementById('task-list');
@@ -11,33 +10,17 @@ fetch(`${basePath}data.json`) // Fetch data.json inside Project folder
             const thumbnail = document.createElement('div');
             thumbnail.classList.add('thumbnail');
 
-            // Construct the image path correctly
-            const imgSrc = `${imagePath}${index + 1}.jpg`;
-            console.log(`Loading image from: ${imgSrc}`); // Debugging
+            // Correct image path
+            const imagePath = `${basePath}images/${index + 1}.jpg`;
 
-            // Add the thumbnail content first
+            // Add the thumbnail content
             thumbnail.innerHTML = `
-                <div class="image-placeholder">Loading...</div>
+                <img src="${imagePath}" alt="Task ${index + 1}" class="task-image" />
                 <h3>${task.title}</h3>
             `;
 
-            // Load task content on click
             thumbnail.addEventListener('click', () => loadTaskContent(task.title, task.files));
             taskList.appendChild(thumbnail);
-
-            // Attempt to load the image
-            const img = new Image();
-            img.onload = () => {
-                thumbnail.querySelector('.image-placeholder').innerHTML = `
-                    <img src="${imgSrc}" alt="Task ${index + 1}">
-                `;
-            };
-            img.onerror = () => {
-                console.error(`Image not found: ${imgSrc}`);
-                thumbnail.querySelector('.image-placeholder').innerHTML = 'Image not found';
-            };
-
-            img.src = imgSrc; // Start loading the image
         });
     })
     .catch(error => console.error('Error loading task data:', error));
@@ -58,7 +41,8 @@ document.querySelector('.close-button').onclick = () => {
 };
 
 window.onclick = (event) => {
-    if (event.target === document.getElementById('task-modal')) {
-        document.getElementById('task-modal').style.display = "none";
+    const modal = document.getElementById('task-modal');
+    if (event.target === modal) {
+        modal.style.display = "none";
     }
 };
