@@ -1,56 +1,35 @@
 const basePath = './';
 
 fetch(`${basePath}data.json`)
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`Failed to load data.json: ${response.status} ${response.statusText}`);
-        }
-        return response.json();
-    })
+    .then(response => response.json())
     .then(data => {
         const taskList = document.getElementById('task-list');
-        taskList.innerHTML = '';
 
         data.forEach((task, index) => {
             const thumbnail = document.createElement('div');
             thumbnail.classList.add('thumbnail');
 
-            // Correct image path
-            const imagePath = `${basePath}images/${index + 1}.jpg`;
+            const imagePath = `${basePath}images/${index + 1}.jpg`;  // Updated to match the image names
+            const taskPath = `${basePath}Tasks/${task.files[0]}`;  // Correct task file path
 
             thumbnail.innerHTML = `
-                <div class="image-placeholder">
-                    <img src="${imagePath}" alt="Task ${index + 1}" onerror="this.src='${basePath}images/placeholder.jpg';" />
-                </div>
+                <img src="${imagePath}" alt="${task.title}" />
                 <h3>${task.title}</h3>
             `;
 
-            thumbnail.addEventListener('click', () => loadTaskContent(task.title, task.files));
+            thumbnail.addEventListener('click', () => loadTask(task.title, taskPath));
             taskList.appendChild(thumbnail);
         });
-    })
-    .catch(error => console.error('Error loading task data:', error));
+    });
 
-function loadTaskContent(title, files) {
-    const modal = document.getElementById('task-modal');
-    const modalContent = document.getElementById('modal-task-details');
-
-    const taskPath = `${basePath}Tasks/${files[0]}`;
-    
-    modalContent.innerHTML = `
+function loadTask(title, path) {
+    document.getElementById('modal-task-details').innerHTML = `
         <h3>${title}</h3>
-        <iframe src="${taskPath}" width="100%" height="500px" frameborder="0"></iframe>
+        <iframe src="${path}" frameborder="0" width="100%" height="500px"></iframe>
     `;
-    modal.style.display = "block";
+    document.getElementById('task-modal').style.display = 'block';
 }
 
 document.querySelector('.close-button').onclick = () => {
-    document.getElementById('task-modal').style.display = "none";
-};
-
-window.onclick = (event) => {
-    const modal = document.getElementById('task-modal');
-    if (event.target === modal) {
-        modal.style.display = "none";
-    }
+    document.getElementById('task-modal').style.display = 'none';
 };
