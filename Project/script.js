@@ -11,14 +11,25 @@ fetch(`${basePath}data.json`)
     })
     .then(data => {
         const taskList = document.getElementById('task-list');
-        taskList.innerHTML = '';
+        taskList.innerHTML = ''; // Clear the task list before adding new content
 
         console.log('Data loaded:', data);
 
-        data.forEach(task => {
+        data.forEach((task, index) => {
             const thumbnail = document.createElement('div');
             thumbnail.classList.add('thumbnail');
-            thumbnail.innerHTML = `<h3>${task.title}</h3>`;
+
+            // Add image (from image folder, named 1.jpg to 16.jpg)
+            const imageUrl = `${basePath}image/${index + 1}.jpg`; // Adjusted to match your image folder name
+
+            thumbnail.innerHTML = `
+                <div class="image-container">
+                    <img src="${imageUrl}" alt="${task.title}" class="task-image" />
+                    <div class="overlay">${task.title}</div>
+                </div>
+            `;
+
+            // Add an event listener for task click to load task content
             thumbnail.addEventListener('click', () => loadTaskContent(task.title, task.files));
             taskList.appendChild(thumbnail);
         });
