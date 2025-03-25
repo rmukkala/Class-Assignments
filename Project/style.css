@@ -23,6 +23,10 @@ header {
     padding: 1em 0;
 }
 
+header h1 {
+    font-weight: normal;
+}
+
 /* Heading */
 .tasks-heading {
     text-align: center;
@@ -32,6 +36,7 @@ header {
 .tasks-heading h2 {
     font-size: 2.5em;
     color: #342E2E;
+    font-weight: normal;
 }
 
 /* Thumbnails Grid */
@@ -54,6 +59,10 @@ header {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .thumbnail img {
@@ -118,24 +127,48 @@ footer {
     width: 100%;
 }
 
-.footer-content {
+footer .footer-content {
     display: flex;
     justify-content: space-between;
     padding: 0 20px;
 }
 
-.footer-icon {
+footer .footer-icon {
     color: #FBFBFB;
     margin: 0 10px;
     font-size: 1.5em;
 }
 
-.footer-icon:hover {
+footer .footer-icon:hover {
     color: #E8E8E8;
 }
 
+/* Responsive Adjustments */
 @media (max-width: 768px) {
+    .tasks-heading h2 {
+        font-size: 2em;
+    }
+
+    .modal-content {
+        width: 95%;
+        padding: 15px;
+    }
+
     .thumbnails {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr); /* 2 boxes per row */
+    }
+}
+
+@media (max-width: 480px) {
+    .tasks-heading h2 {
+        font-size: 1.5em;
+    }
+
+    .thumbnail h3 {
+        font-size: 1em;
+    }
+
+    .thumbnail img {
+        height: 120px;
     }
 }
