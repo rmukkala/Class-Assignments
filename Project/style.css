@@ -1,3 +1,4 @@
+/* Global Reset */
 html, body {
     margin: 0;
     padding: 0;
@@ -5,13 +6,6 @@ html, body {
     font-family: 'Instrument Serif', 'Newsreader', serif;
     background-color: #FBFBFB;
     color: #342E2E;
-    box-sizing: border-box;
-}
-
-*,
-*::before,
-*::after {
-    box-sizing: inherit;
 }
 
 /* Header */
@@ -26,7 +20,7 @@ header h1 {
     font-weight: normal;
 }
 
-/* Heading */
+/* Centered "My Tasks" heading */
 .tasks-heading {
     text-align: center;
     margin-top: 20px;
@@ -38,112 +32,93 @@ header h1 {
     font-weight: normal;
 }
 
-/* Thumbnails Grid */
+/* Task Grid */
 .thumbnails {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 boxes per row */
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
     padding: 20px;
-    height: calc(100vh - 220px);
+    height: calc(100vh - 220px); /* Adjusted for header and footer */
     overflow-y: auto;
 }
 
-/* Individual Thumbnail */
 .thumbnail {
     background-color: #E8E8E8;
     border: 1px solid #ccc;
     border-radius: 10px;
-    padding: 10px;
+    padding: 20px;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s;
     cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.thumbnail img {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 8px;
-}
-
-.thumbnail h3 {
-    margin-top: 10px;
-    font-size: 1.2em;
-    color: #342E2E;
 }
 
 .thumbnail:hover {
     transform: scale(1.05);
 }
 
-/* Placeholder for loading images */
-.image-placeholder {
-    width: 100%;
-    height: 150px;
-    background-color: #ddd;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 8px;
-    color: #888;
-    font-size: 14px;
-}
-
-/* Modal Styling */
+/* Modal Styles */
 .modal {
-    display: none;
+    display: none; /* Hidden by default */
     position: fixed;
-    z-index: 9999;
+    z-index: 1;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: hidden;
-    background-color: rgba(0, 0, 0, 0.6);
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent background */
 }
 
 .modal-content {
     background-color: #fefefe;
-    margin: 5% auto;
+    margin: 15% auto; /* Center the modal */
     padding: 20px;
-    width: 90%; /* Adjust for smaller screens */
-    max-width: 800px;
+    border: 1px solid #888;
+    width: 80%; /* Adjust width as needed */
     border-radius: 8px;
     position: relative;
 }
 
-/* Close Button */
 .close-button {
     color: #aaa;
-    position: absolute;
-    top: 10px;
-    right: 15px;
+    float: right;
     font-size: 28px;
+    font-weight: bold;
     cursor: pointer;
 }
 
-.close-button:hover {
+.close-button:hover,
+.close-button:focus {
     color: black;
+    text-decoration: none;
+    cursor: pointer;
 }
 
-/* Footer Styling */
+/* Task Links */
+.task-file {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+.task-file:hover {
+    text-decoration: underline;
+    color: #0056b3;
+}
+
+/* Footer */
 footer {
     background-color: #342E2E;
     color: #FBFBFB;
     text-align: center;
     padding: 1em 0;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
 }
 
 footer .footer-content {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 0 20px;
 }
 
@@ -151,43 +126,13 @@ footer .footer-icon {
     color: #FBFBFB;
     margin: 0 10px;
     font-size: 1.5em;
-    transition: color 0.2s;
 }
 
 footer .footer-icon:hover {
     color: #E8E8E8;
 }
 
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-    .tasks-heading h2 {
-        font-size: 2em;
-    }
-
-    .modal-content {
-        width: 95%;
-        padding: 15px;
-    }
-
-    .thumbnails {
-        grid-template-columns: repeat(2, 1fr); /* 2 boxes per row on smaller screens */
-    }
-}
-
-@media (max-width: 480px) {
-    .tasks-heading h2 {
-        font-size: 1.5em;
-    }
-
-    .thumbnail h3 {
-        font-size: 1em;
-    }
-
-    .thumbnail img {
-        height: 120px;
-    }
-
-    .thumbnails {
-        grid-template-columns: 1fr; /* 1 box per row on very small screens */
-    }
+footer p {
+    font-size: 1.2em;
+    margin: 0;
 }
