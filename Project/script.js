@@ -1,6 +1,3 @@
-// script.js
-
-// If hosted on GitHub Pages, adjust the basePath to include the repository name
 const basePath = './';
 
 fetch(`${basePath}data.json`)
@@ -18,13 +15,13 @@ fetch(`${basePath}data.json`)
             const thumbnail = document.createElement('div');
             thumbnail.classList.add('thumbnail');
 
-            // Construct correct image path
+            // Correct image path
             const imagePath = `${basePath}images/${index + 1}.jpg`;
-            console.log(`Loading image: ${imagePath}`); // Debugging output
 
-            // Add thumbnail content
             thumbnail.innerHTML = `
-                <img src="${imagePath}" alt="Task ${index + 1}" class="task-image" />
+                <div class="image-placeholder">
+                    <img src="${imagePath}" alt="Task ${index + 1}" onerror="this.src='${basePath}images/placeholder.jpg';" />
+                </div>
                 <h3>${task.title}</h3>
             `;
 
@@ -38,10 +35,8 @@ function loadTaskContent(title, files) {
     const modal = document.getElementById('task-modal');
     const modalContent = document.getElementById('modal-task-details');
 
-    // Construct task path correctly
     const taskPath = `${basePath}Tasks/${files[0]}`;
-    console.log(`Loading task: ${taskPath}`); // Debugging output
-
+    
     modalContent.innerHTML = `
         <h3>${title}</h3>
         <iframe src="${taskPath}" width="100%" height="500px" frameborder="0"></iframe>
