@@ -15,4 +15,8 @@
     { "title": "Functions", "files": ["task14.html"] },
     { "title": "Class & Bootstrap", "files": ["task15.html"] },
     { "title": "JSON", "files": ["task16.html"] }
+    { "title": "Bootstrap", "files": ["task17.html"] }
+    { "title": "Figma", "files": ["task18.html"] }
+    { "title": "Tailwing", "files": ["task19.html"] }
+    { "title": "JS_ES6", "files": ["task20.html"] }
 ]
