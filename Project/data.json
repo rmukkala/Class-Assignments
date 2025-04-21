@@ -1,22 +1,22 @@
 [
-    { "title": "Expectation Document", "files": ["task1.html"] },
-    { "title": "Basic HTML Styling", "files": ["task2.html"] },
-    { "title": "CSS Hover", "files": ["task3.html"] },
-    { "title": "Welcome to JS", "files": ["task4.html"] },
-    { "title": "Calculator with JS", "files": ["task5.html"] },
-    { "title": "GitHub Integration", "files": ["task6.html"] },
-    { "title": "Console Output", "files": ["task7.html"] },
-    { "title": "String Operation", "files": ["task8.html"] },
-    { "title": "Conditions", "files": ["task9.html"] },
-    { "title": "Call-Stack with Array", "files": ["task10.html"] },
-    { "title": "Loops", "files": ["task11.html"] },
-    { "title": "Objects-1", "files": ["task12.html"] },
-    { "title": "Objects-2", "files": ["task13.html"] },
-    { "title": "Functions", "files": ["task14.html"] },
-    { "title": "Class & Bootstrap", "files": ["task15.html"] },
-    { "title": "JSON", "files": ["task16.html"] }
-    { "title": "Bootstrap", "files": ["task17.html"] }
-    { "title": "Figma", "files": ["task18.html"] }
-    { "title": "Tailwing", "files": ["task19.html"] }
-    { "title": "JS_ES6", "files": ["task20.html"] }
+  { "title": "Expectation Document", "files": ["Tasks/task1.html"] },
+  { "title": "Basic HTML Styling", "files": ["Tasks/task2.html"] },
+  { "title": "CSS Hover", "files": ["Tasks/task3.html"] },
+  { "title": "Welcome to JS", "files": ["Tasks/task4.html"] },
+  { "title": "Calculator with JS", "files": ["Tasks/task5.html"] },
+  { "title": "GitHub Integration", "files": ["Tasks/task6.html"] },
+  { "title": "Console Output", "files": ["Tasks/task7.html"] },
+  { "title": "String Operation", "files": ["Tasks/task8.html"] },
+  { "title": "Conditions", "files": ["Tasks/task9.html"] },
+  { "title": "Call-Stack with Array", "files": ["Tasks/task10.html"] },
+  { "title": "Loops", "files": ["Tasks/task11.html"] },
+  { "title": "Objects-1", "files": ["Tasks/task12.html"] },
+  { "title": "Objects-2", "files": ["Tasks/task13.html"] },
+  { "title": "Functions", "files": ["Tasks/task14.html"] },
+  { "title": "Class & Bootstrap", "files": ["Tasks/task15.html"] },
+  { "title": "JSON", "files": ["Tasks/task16.html"] },
+  { "title": "Bootstrap", "files": ["Tasks/task17.html"] },
+  { "title": "Figma", "files": ["Tasks/task18.html"] },
+  { "title": "Tailwing", "files": ["Tasks/task19.html"] },
+  { "title": "JS_ES6 (React App)", "files": ["http://localhost:5173/"] }
 ]
