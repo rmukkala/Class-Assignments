@@ -17,5 +17,6 @@
   { "title": "JSON", "files": ["Tasks/task16.html"] },
   { "title": "Bootstrap", "files": ["Tasks/task17.html"] },
   { "title": "Figma", "files": ["Tasks/task18.html"] },
-  { "title": "Tailwind", "files": ["Tasks/task19.html"] }
+  { "title": "Tailwind", "files": ["Tasks/task19.html"] },
+  { "title": "JS_ES6", "files": ["http://localhost:3000"] }
 ]
