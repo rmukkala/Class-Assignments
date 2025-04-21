@@ -19,7 +19,15 @@ fetch(`${basePath}data.json`)
         </div>
       `;
 
-      thumbnail.addEventListener('click', () => loadTaskContent(task.title, task.files));
+      thumbnail.addEventListener('click', () => {
+        const fileUrl = task.files[0];
+        if (fileUrl.startsWith('http://') || fileUrl.startsWith('https://')) {
+          window.open(fileUrl, '_blank');
+        } else {
+          loadTaskContent(task.title, task.files);
+        }
+      });
+
       taskList.appendChild(thumbnail);
     });
   })
@@ -52,6 +60,7 @@ function loadTaskContent(title, files) {
 document.querySelector('.close-button').onclick = () => {
   document.getElementById('task-modal').style.display = 'none';
 };
+
 window.onclick = event => {
   if (event.target === document.getElementById('task-modal')) {
     document.getElementById('task-modal').style.display = 'none';
